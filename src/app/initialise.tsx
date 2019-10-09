@@ -4,7 +4,7 @@ import 'whatwg-fetch'
 import 'core-js/shim' // included < Stage 4 proposals
 import 'regenerator-runtime/runtime'
 
-import React from 'react'
+import * as React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
