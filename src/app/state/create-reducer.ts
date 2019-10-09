@@ -1,7 +1,18 @@
 import { combineReducers } from 'redux'
 import { isNil } from 'ramda'
+import { FetchActionTypes } from '../types/fetch-meta.interface'
 
-const createReducer = (initialState, handlers) => {
+// index signature for handlers
+type Handlers = {
+  [key: string]: Function
+}
+
+type Operation = {
+  operation: string,
+  types: FetchActionTypes
+}
+
+const createReducer = (initialState: any, handlers: Handlers) => {
   return (state = initialState, action) => {
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action)
@@ -11,7 +22,7 @@ const createReducer = (initialState, handlers) => {
   }
 }
 
-const createFetchMetaReducer = (types) => {
+const createFetchMetaReducer = (types: FetchActionTypes) => {
   if (isNil(types)) {
     return null
   }
@@ -25,20 +36,17 @@ const createFetchMetaReducer = (types) => {
   const [requested, succeeded, failed] = types
 
   return createReducer(initialState, {
-    [requested]: (state, action) => ({
-      ...state,
+    [requested]: () => ({
       isLoading: true,
       hasLoaded: false,
       hasErrored: false
     }),
-    [succeeded]: (state, action) => ({
-      ...state,
+    [succeeded]: () => ({
       isLoading: false,
       hasLoaded: true,
       hasErrored: false
     }),
-    [failed]: (state, action) => ({
-      ...state,
+    [failed]: () => ({
       isLoading: false,
       hasLoaded: false,
       hasErrored: true
@@ -46,14 +54,13 @@ const createFetchMetaReducer = (types) => {
   })
 }
 
-const asyncMetaReducer = (operations) => {
-  const reducers = operations.reduce((acc, operation) => ({
-    ...acc,
-    [operation.operation]: createFetchMetaReducer(operation.types)
-  }), {})
+const buildAsyncMetaReducers = (reducers: object, operation: Operation) => ({
+  ...reducers,
+  [operation.operation]: createFetchMetaReducer(operation.types)
+})
 
-  return combineReducers(reducers)
-}
+const asyncMetaReducer = (operations: Operation[]) =>
+  combineReducers(operations.reduce(buildAsyncMetaReducers, {}))
 
 export {
   createReducer,

@@ -1,7 +1,9 @@
-const namespace = 'locations'
+import { FetchActionTypes } from '../../types/fetch-meta.interface'
 
-export const READ_LOCATIONS_REQUESTED = `${namespace}/READ_LOCATIONS_REQUESTED`
-export const READ_LOCATIONS_SUCCEEDED = `${namespace}/READ_LOCATIONS_SUCCEEDED`
-export const READ_LOCATIONS_FAILED = `${namespace}/READ_LOCATIONS_FAILED`
+const namespace: string = 'locations'
 
-export const READ = [READ_LOCATIONS_REQUESTED, READ_LOCATIONS_SUCCEEDED, READ_LOCATIONS_FAILED]
+export const READ_LOCATIONS_REQUESTED: string = `${namespace}/READ_LOCATIONS_REQUESTED`
+export const READ_LOCATIONS_SUCCEEDED: string = `${namespace}/READ_LOCATIONS_SUCCEEDED`
+export const READ_LOCATIONS_FAILED: string = `${namespace}/READ_LOCATIONS_FAILED`
+
+export const READ: FetchActionTypes = [READ_LOCATIONS_REQUESTED, READ_LOCATIONS_SUCCEEDED, READ_LOCATIONS_FAILED]
