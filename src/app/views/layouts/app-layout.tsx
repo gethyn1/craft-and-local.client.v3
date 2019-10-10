@@ -1,5 +1,4 @@
 import * as React from 'react'
-import './app.scss'
 
 type AppLayout = {
   children: React.ReactNode

@@ -1,9 +1,14 @@
 import * as React from 'react'
-import 'normalize.css'
+import { ThemeProvider } from 'styled-components'
+import './base.scss'
 
-type Base = {
-  children: React.ReactNode
+const theme = {
+  breakpoints: ['40em', '52em', '64em'],
+  fontSizes: [12, 14, 16, 20, 24, 32],
+  colors: {
+    primary: '#007ce0'
+  }
 }
 
-export const Base = ({ children }: Base) =>
-  <React.Fragment>{children}</React.Fragment>
+export const Base = ({ children }) =>
+<ThemeProvider theme={theme}>{children}</ThemeProvider>
