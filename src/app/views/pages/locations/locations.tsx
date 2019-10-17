@@ -1,23 +1,18 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { color, ColorProps, fontSize, FontSizeProps } from 'styled-system'
 import { AppLayout } from '../../layouts'
 import { Location } from '../../../types/location.interface'
 import { FetchMeta } from '../../../types/fetch-meta.interface'
+import { Card } from '../../../components/card'
+import { Grid } from '../../../components/grid'
+import { Heading, Headings, Levels } from '../../../components/heading'
 
 const { useEffect } = React
 
-const Title = styled.h1<ColorProps & FontSizeProps>`
-  text-align: center;
-  ${color}
-  ${fontSize}
-`
-
 const LocationItem = ({ location }: { location: Location, key: string }) => (
-  <li>
+  <Card large>
     <Link to={`/locations/${location.id}`}>{location.title}</Link>
-  </li>
+  </Card>
 )
 
 interface LocationsProps {
@@ -33,11 +28,11 @@ const Locations = ({ getLocations, locations, meta }: LocationsProps) => {
 
   return (
     <AppLayout>
-      <Title color="primary" fontSize={[1, 5]}>Locations</Title>
+      <Heading as={Headings.H2} level={Levels.LEVEL_2}>Locations</Heading>
       {meta.read.hasErrored && <p>There was an error loading locations</p>}
-      <ul>
+      <Grid>
         {locations.map(location => <LocationItem key={location.id} location={location} />)}
-      </ul>
+      </Grid>
     </AppLayout>
   )
 }

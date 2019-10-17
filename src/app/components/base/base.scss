@@ -1,5 +1,9 @@
 @import 'normalize.css';
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'Karla', sans-serif;
 }
