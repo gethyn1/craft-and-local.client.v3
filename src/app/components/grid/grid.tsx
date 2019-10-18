@@ -16,7 +16,7 @@ const StyledGrid = styled.div<GridProps>`
 const Grid = ({ ...props }: Grid) => (
   <StyledGrid
     {...props}
-    gridGap={[ 2, 3 ]}
+    gridGap={[ 8, 16 ]}
     gridTemplateColumns={['1fr', '1fr 1fr', '1fr 1fr 1fr 1fr']}
   />
 )

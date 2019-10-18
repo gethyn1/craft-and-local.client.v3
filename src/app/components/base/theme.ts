@@ -1,14 +1,19 @@
 const theme = {
   breakpoints: ['40em', '52em', '64em'],
   space: {
-    small: 4,
-    medium: 8,
-    large: 16,
+    xsmall: 4,
+    small: 8,
+    medium: 16,
+    large: 32,
+    xlarge: 64
   },
   fontSizes: [12, 14, 16, 18, 20, 22, 24, 26, 28, 32, 36, 40, 48],
   fontFamily: '"Karla", sans-serif',
   colors: {
-    primary: '#007ce0'
+    primary: '#007ce0',
+    greys: {
+      border: '#c9d1d3'
+    }
   },
   layout: {
     container: {

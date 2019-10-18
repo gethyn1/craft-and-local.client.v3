@@ -7,11 +7,13 @@ import { Card } from '../../../components/card'
 import { Grid } from '../../../components/grid'
 import { Heading, Headings, Levels } from '../../../components/heading'
 import { Container } from '../../../components/container'
+import { Box } from '../../../components/box'
+import { Sizes } from '../../../components/enums'
 
 const { useEffect } = React
 
 const LocationItem = ({ location }: { location: Location, key: string }) => (
-  <Card large>
+  <Card size={Sizes.LARGE}>
     <Link to={`/locations/${location.id}`}>{location.title}</Link>
   </Card>
 )
@@ -30,11 +32,13 @@ const Locations = ({ getLocations, locations, meta }: LocationsProps) => {
   return (
     <AppLayout>
       <Container>
-        <Heading as={Headings.H2} level={Levels.LEVEL_2}>Locations</Heading>
-        {meta.read.hasErrored && <p>There was an error loading locations</p>}
-        <Grid>
-          {locations.map(location => <LocationItem key={location.id} location={location} />)}
-        </Grid>
+        <Box size={Sizes.LARGE}>
+          <Heading as={Headings.H2} level={Levels.LEVEL_2}>Locations</Heading>
+          {meta.read.hasErrored && <p>There was an error loading locations</p>}
+          <Grid>
+            {locations.map(location => <LocationItem key={location.id} location={location} />)}
+          </Grid>
+        </Box>
       </Container>
     </AppLayout>
   )
