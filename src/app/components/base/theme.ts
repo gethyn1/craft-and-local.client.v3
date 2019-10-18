@@ -10,6 +10,11 @@ const theme = {
   colors: {
     primary: '#007ce0'
   },
+  layout: {
+    container: {
+      maxWidth: 1280
+    }
+  }
 }
 
 // Font sizes aliases based on https://typecast.com/blog/a-more-modern-scale-for-web-typography

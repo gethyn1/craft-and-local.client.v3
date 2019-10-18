@@ -6,6 +6,7 @@ import { FetchMeta } from '../../../types/fetch-meta.interface'
 import { Card } from '../../../components/card'
 import { Grid } from '../../../components/grid'
 import { Heading, Headings, Levels } from '../../../components/heading'
+import { Container } from '../../../components/container'
 
 const { useEffect } = React
 
@@ -28,11 +29,13 @@ const Locations = ({ getLocations, locations, meta }: LocationsProps) => {
 
   return (
     <AppLayout>
-      <Heading as={Headings.H2} level={Levels.LEVEL_2}>Locations</Heading>
-      {meta.read.hasErrored && <p>There was an error loading locations</p>}
-      <Grid>
-        {locations.map(location => <LocationItem key={location.id} location={location} />)}
-      </Grid>
+      <Container>
+        <Heading as={Headings.H2} level={Levels.LEVEL_2}>Locations</Heading>
+        {meta.read.hasErrored && <p>There was an error loading locations</p>}
+        <Grid>
+          {locations.map(location => <LocationItem key={location.id} location={location} />)}
+        </Grid>
+      </Container>
     </AppLayout>
   )
 }
