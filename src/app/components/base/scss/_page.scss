@@ -1,0 +1,33 @@
+/* ==========================================================================
+   #PAGE
+   ========================================================================== */
+
+/**
+ * Simple page-level setup.
+ *
+ * 1. Set the default `font-size` and `line-height` for the entire project.
+ * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+ *    navigating between pages that do/do not have enough content to produce
+ *    scrollbars naturally.
+ * 3. Ensure the page always fills at least the entire height of the viewport.
+ */
+
+ html {
+  font-size: 1em; /* [1] */
+  line-height: 1.25; /* [1] */
+  overflow-y: scroll; /* [2] */
+  min-height: 100%; /* [3] */
+}
+
+/**
+ * Links inside headings.
+ *
+ * 1. Inherit colour from heading styles.
+ * 2. Remove default underline for links in headings.
+ */
+h1, h2, h3, h4, h5, h6 {
+  a {
+    color: inherit; /* [1] */
+    text-decoration: none; /* [2] */
+  }
+}
