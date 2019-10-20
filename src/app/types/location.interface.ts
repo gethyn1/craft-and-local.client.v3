@@ -1,4 +1,5 @@
 export interface Location {
   title: string,
-  id: string
+  id: string,
+  categories: string[]
 }
