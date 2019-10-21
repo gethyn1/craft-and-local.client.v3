@@ -1,7 +1,8 @@
 import * as actions from './actions'
-import { reducer } from './reducers'
+import { reducer, CategoriesState } from './reducers'
 
 export {
   actions,
-  reducer
+  reducer,
+  CategoriesState
 }

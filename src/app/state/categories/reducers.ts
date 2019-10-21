@@ -1,19 +1,15 @@
 import { combineReducers } from 'redux'
 import { createReducer, asyncMetaReducer } from '../create-reducer'
 import * as types from './types'
-import { Category } from '../../types/categories.interface'
+import { Category } from '../../types/category.interface'
+import { FetchMeta } from '../../types/fetch-meta.interface'
 
 const { READ_CATEGORIES_SUCCEEDED } = types
 
-/**
- * State shape
- * {
- *   entities: Category[],
- *   meta: {
- *     read: FetchMeta
- *   }
- * }
- */
+type CategoriesState = {
+  entities: Category[],
+  meta: FetchMeta
+}
 
 const entityHandlers = {
   [READ_CATEGORIES_SUCCEEDED]: (
@@ -30,5 +26,6 @@ const reducer = combineReducers({
 })
 
 export {
-  reducer
+  reducer,
+  CategoriesState
 }
