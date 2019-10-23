@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import { theme } from './theme'
+import { theme } from '../theme'
 import './scss/base.scss'
 import { GlobalThemeStyles } from './global-theme-styles'
 

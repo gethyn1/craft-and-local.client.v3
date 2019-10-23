@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled, { withTheme } from 'styled-components'
 import { space, SpaceProps, color, ColorProps, fontSize, FontSizeProps } from 'styled-system'
 import { Sizes, FontSizes } from '../enums'
-import { getSizesForTheme, getFontSizesForTheme, getColorsForTheme } from '../get-sizes-for-theme'
+import { getSizesForTheme, getFontSizesForTheme, getColorsForTheme } from '../theme'
 import { ThemeType } from '../base'
 
 interface InlineList<T> {

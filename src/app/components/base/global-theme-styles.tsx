@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { fontSize, FontSizeProps, space, SpaceProps } from 'styled-system'
 import { createGlobalStyle, withTheme } from 'styled-components'
-import { ThemeType } from './theme'
+import { ThemeType } from '../theme'
 
 const GlobalTypography = createGlobalStyle<{ theme: ThemeType } & FontSizeProps & SpaceProps>`
   body {

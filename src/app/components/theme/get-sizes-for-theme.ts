@@ -1,5 +1,5 @@
-import { Sizes, FontSizes, Colors } from './enums'
-import { ThemeType } from './base/theme'
+import { Sizes, FontSizes, Colors } from '../enums'
+import { ThemeType } from './theme'
 
 // TODO move theme and ThemeType so it is easily imported
 const getSizesForTheme = (theme: ThemeType) => ({

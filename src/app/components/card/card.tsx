@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { withTheme } from 'styled-components'
 import { space, SpaceProps } from 'styled-system'
-import { getSizesForTheme } from '../get-sizes-for-theme'
+import { getSizesForTheme } from '../theme'
 
 // TODO use colors enum
 const StyledCard = styled.div<SpaceProps>`

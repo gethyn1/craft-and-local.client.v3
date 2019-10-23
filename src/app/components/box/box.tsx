@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { withTheme } from 'styled-components'
 import { space, SpaceProps } from 'styled-system'
-import { getSizesForTheme } from '../get-sizes-for-theme'
+import { getSizesForTheme } from '../theme'
 import { Sizes } from '../enums'
 
 const StyledBox = styled.div<SpaceProps>`
