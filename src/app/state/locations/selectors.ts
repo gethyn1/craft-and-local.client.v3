@@ -13,7 +13,9 @@ const findCategoryForId = (categories: Category[]) => (ID: string): Category | u
 
 const populateCategories = (categories: Category[]) => (location: Location) => ({
   ...location,
-  categories: location.categories.map(findCategoryForId(categories))
+  // TODO Boolean filter as locations could be loaded without categories existing in app state
+  // is there a better way of doing this?
+  categories: location.categories.map(findCategoryForId(categories)).filter(Boolean)
 })
 
 const getPopulatedLocations = (categories: Category[], state: AppState) =>

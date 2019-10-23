@@ -34,7 +34,7 @@ type HeadingType = {
 }
 
 const StyledHeading = styled.h1<FontSizeProps>`
-  font-weight: bold;
+  font-weight: 700;
   ${fontSize}
 `
 

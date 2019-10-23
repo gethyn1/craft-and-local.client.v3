@@ -11,9 +11,8 @@ const theme = {
   fontFamily: '"Karla", sans-serif',
   colors: {
     primary: '#007ce0',
-    greys: {
-      border: '#c9d1d3'
-    }
+    darkGrey: '#666',
+    lightGrey: '#c9d1d3'
   },
   layout: {
     container: {
@@ -23,6 +22,7 @@ const theme = {
 }
 
 // Font sizes aliases based on https://typecast.com/blog/a-more-modern-scale-for-web-typography
+// TODO remove these @ts-ignore statements
 
 // @ts-ignore: Typescript does not support styled system aliases
 theme.fontSizes.headingLevel1 = [32, 40, 48]
@@ -34,6 +34,8 @@ theme.fontSizes.headingLevel3 = [22, 24, 28]
 theme.fontSizes.headingLevel4 = [18]
 // @ts-ignore: Typescript does not support styled system aliases
 theme.fontSizes.body = [16]
+// @ts-ignore: Typescript does not support styled system aliases
+theme.fontSizes.small = [14]
 
 type ThemeType = typeof theme
 
