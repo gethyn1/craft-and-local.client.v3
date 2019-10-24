@@ -1,7 +1,7 @@
 import * as React from 'react'
-import styled, { withTheme } from 'styled-components'
+import styled from 'styled-components'
 import { space, SpaceProps } from 'styled-system'
-import { getSizesForTheme } from '../theme'
+import { getSpace } from '../theme'
 import { Sizes } from '../enums'
 
 const StyledBox = styled.div<SpaceProps>`
@@ -13,17 +13,12 @@ type Box = {
   size: Sizes
 }
 
-// TODO this format renders <Anonymous /> instead of <Box /> in component inspector
-const Box = withTheme(({ size, ...props }) => {
-  const padding = getSizesForTheme(props.theme)[size]
-
-  return (
-    <StyledBox
-      {...props}
-      p={padding}
-    />
-  )
-})
+const Box = ({ size, ...props }) => (
+  <StyledBox
+    {...props}
+    p={getSpace(size)}
+  />
+)
 
 export {
   Box

@@ -1,2 +1,2 @@
 export * from './theme'
-export * from './get-sizes-for-theme'
+export * from './get-values'

@@ -1,5 +1,5 @@
 export enum Colors {
-  PRIMARY = 'PRIMARY',
-  DARK_GREY = 'DARK_GREY',
-  LIGHT_GREY = 'LIGHT_GREY'
+  PRIMARY = 'primary',
+  DARK_GREY = 'darkGrey',
+  LIGHT_GREY = 'lightGrey'
 }

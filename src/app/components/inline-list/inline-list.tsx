@@ -1,9 +1,8 @@
 import * as React from 'react'
-import styled, { withTheme } from 'styled-components'
+import styled from 'styled-components'
 import { space, SpaceProps, color, ColorProps, fontSize, FontSizeProps } from 'styled-system'
-import { Sizes, FontSizes } from '../enums'
-import { getSizesForTheme, getFontSizesForTheme, getColorsForTheme } from '../theme'
-import { ThemeType } from '../base'
+import { Sizes, FontSizes, Colors } from '../enums'
+import { getSpace, getFontSize, getColor } from '../theme'
 
 interface InlineList<T> {
   items: T[],
@@ -11,8 +10,7 @@ interface InlineList<T> {
   keyProp: keyof T,
   delimiter: string,
   size?: Sizes,
-  theme: ThemeType,
-  color?: string,
+  color?: Colors,
   fontSize?: FontSizes
 }
 
@@ -44,20 +42,15 @@ const ListItem = styled.li<SpaceProps & ListItemProps>`
   }
 `
 
-const InlineList = <T extends any>({ items, prop, keyProp, delimiter, size = Sizes.SMALL, theme, color, fontSize }: InlineList<T>) => {
-  const marginLeft = getSizesForTheme(theme)[size]
-  const listFontSize = getFontSizesForTheme(theme)[fontSize]
-  const listColor = getColorsForTheme(theme)[color]
-
-  return (
-    <List color={listColor} fontSize={listFontSize}>
-      {items.map(item => <ListItem marginLeft={marginLeft} delimiter={delimiter} key={item[keyProp]}>{item[prop]}</ListItem>)}
-    </List>
-  )
-}
-
-const InlineListWithTheme = withTheme(InlineList)
+const InlineList = <T extends any>({ items, prop, keyProp, delimiter, size = Sizes.SMALL, color, fontSize }: InlineList<T>) => (
+  <List
+    color={getColor(color)}
+    fontSize={getFontSize(fontSize)}
+  >
+    {items.map(item => <ListItem marginLeft={getSpace(size)} delimiter={delimiter} key={item[keyProp]}>{item[prop]}</ListItem>)}
+  </List>
+)
 
 export {
-  InlineListWithTheme as InlineList
+  InlineList
 }
