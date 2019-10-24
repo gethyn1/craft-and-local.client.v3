@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { withTheme } from 'styled-components'
-import { fontSize, FontSizeProps } from 'styled-system'
+import { fontSize, FontSizeProps, space, SpaceProps } from 'styled-system'
+import { getFontSize, getSpace } from '../theme'
+import { FontSizes, Sizes } from '../enums'
 
 enum Headings {
   H1 = 'h1',
@@ -19,47 +20,49 @@ enum Levels {
   LEVEL_4 = '4'
 }
 
-type HeadingType = {
+type HeadingProps = {
   children: React.ReactNode,
   level?: Levels,
-  as?: Headings,
-  theme: {
-    fontSizes: {
-      headingLevel1: number[],
-      headingLevel2: number[],
-      headingLevel3: number[],
-      headingLevel4: number[]
-    }
-  }
+  as?: Headings
 }
 
-const StyledHeading = styled.h1<FontSizeProps>`
+type StyledHeadingProps = {
+  uppercase?: boolean
+}
+
+const StyledHeading = styled.h1<StyledHeadingProps & FontSizeProps & SpaceProps>`
   font-weight: 700;
+  ${props => props.uppercase ? 'text-transform: uppercase;' : null}
   ${fontSize}
+  ${space}
 `
+
+const fontSizesMap = {
+  [Levels.LEVEL_1]: getFontSize(FontSizes.LEVEL_1),
+  [Levels.LEVEL_2]: getFontSize(FontSizes.LEVEL_2),
+  [Levels.LEVEL_3]: getFontSize(FontSizes.LEVEL_3),
+  [Levels.LEVEL_4]: getFontSize(FontSizes.LEVEL_4)
+}
+
+const spaceMap = {
+  [Levels.LEVEL_1]: getSpace(Sizes.LARGE),
+  [Levels.LEVEL_2]: getSpace(Sizes.MEDIUM),
+  [Levels.LEVEL_3]: getSpace(Sizes.SMALL),
+  [Levels.LEVEL_4]: getSpace(Sizes.X_SMALL)
+}
 
 // Use styled components `as` prop to change heading level
 // e.g. <Heading as={Headings.H2} level={Levels.LEVEL_3} />
 //
 // TODO styled components forwards `font-size` as a prop to the HTML element. Needs a fix:
 // https://github.com/styled-system/styled-system/issues/593
-const Heading = withTheme(({ level, ...props }: HeadingType) => {
-  const { headingLevel1, headingLevel2, headingLevel3, headingLevel4 } = props.theme.fontSizes
-
-  const fontSizesMap = {
-    [Levels.LEVEL_1]: headingLevel1,
-    [Levels.LEVEL_2]: headingLevel2,
-    [Levels.LEVEL_3]: headingLevel3,
-    [Levels.LEVEL_4]: headingLevel4
-  }
-
-  return (
-    <StyledHeading
-      {...props}
-      fontSize={fontSizesMap[level]}
-    />
-  )
-})
+const Heading = ({ level, ...props }: HeadingProps & StyledHeadingProps) => (
+  <StyledHeading
+    {...props}
+    fontSize={fontSizesMap[level]}
+    mb={spaceMap[level]}
+  />
+)
 
 export {
   Headings,

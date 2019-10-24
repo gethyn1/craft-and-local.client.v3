@@ -10,10 +10,11 @@ const StyledBox = styled.div<SpaceProps>`
 `
 
 type Box = {
+  children: React.ReactNode,
   size: Sizes
 }
 
-const Box = ({ size, ...props }) => (
+const Box = ({ size, ...props }: Box) => (
   <StyledBox
     {...props}
     p={getSpace(size)}
