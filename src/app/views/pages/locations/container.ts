@@ -3,6 +3,7 @@ import { Locations } from './locations'
 import { locations, categories, AppState } from '../../../state'
 import { FetchMeta } from '../../../types/fetch-meta.interface'
 import { PopulatedLocation } from '../../../types/location.interface'
+import { GetLocations } from './types'
 
 const { selectors } = locations
 
@@ -17,7 +18,7 @@ const mapStateToProps = (state: AppState): MappedState => ({
 })
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  getLocations: () => dispatch(locations.actions.getLocations()),
+  getLocations: ({ coordinates }: GetLocations) => dispatch(locations.actions.getLocations({ coordinates })),
   getCategories: () => dispatch(categories.actions.getCategories())
 })
 
