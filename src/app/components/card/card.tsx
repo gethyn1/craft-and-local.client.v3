@@ -15,11 +15,11 @@ const StyledCard = styled.div<SpaceProps & TypographyProps>`
 
 type Card = {
   children: React.ReactNode,
-  size: Sizes,
+  size?: Sizes,
   align?: 'left' | 'center'
 }
 
-const Card = ({ size, align, ...props }: Card) => (
+const Card = ({ size = Sizes.SMALL, align, ...props }: Card) => (
   <StyledCard
     {...props}
     p={getSpace(size)}
