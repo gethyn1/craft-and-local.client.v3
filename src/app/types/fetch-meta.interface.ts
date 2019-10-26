@@ -1,9 +1,11 @@
 export interface FetchMeta {
-  read: {
-    isLoading: Boolean,
-    hasLoaded: Boolean,
-    hasErrored: boolean
-  }
+  isLoading: Boolean,
+  hasLoaded: Boolean,
+  hasErrored: boolean
+}
+
+export interface CrudMeta {
+  read?: FetchMeta
 }
 
 export type FetchActionTypes = [string, string, string]

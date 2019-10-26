@@ -2,13 +2,13 @@ import { combineReducers } from 'redux'
 import { createReducer, asyncMetaReducer } from '../create-reducer'
 import * as types from './types'
 import { Category } from '../../types/category.interface'
-import { FetchMeta } from '../../types/fetch-meta.interface'
+import { CrudMeta } from '../../types/fetch-meta.interface'
 
 const { READ_CATEGORIES_SUCCEEDED } = types
 
 type CategoriesState = {
   entities: Category[],
-  meta: FetchMeta
+  meta: CrudMeta
 }
 
 const entityHandlers = {

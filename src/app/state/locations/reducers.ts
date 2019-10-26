@@ -2,13 +2,13 @@ import { combineReducers } from 'redux'
 import { createReducer, asyncMetaReducer } from '../create-reducer'
 import * as types from './types'
 import { Location } from '../../types/location.interface'
-import { FetchMeta } from '../../types/fetch-meta.interface'
+import { CrudMeta } from '../../types/fetch-meta.interface'
 
 const { READ_LOCATIONS_SUCCEEDED } = types
 
 type LocationsState = {
   entities: Location[],
-  meta: FetchMeta
+  meta: CrudMeta
 }
 
 const entityHandlers = {
