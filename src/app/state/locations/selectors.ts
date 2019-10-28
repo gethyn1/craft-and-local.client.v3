@@ -1,6 +1,4 @@
-import { Location } from '../../types/location.interface'
-import { Category } from '../../types/category.interface'
-import { CrudMeta } from '../../types/fetch-meta.interface'
+import { Location, CrudMeta } from '../../types'
 import { AppState } from '../root-reducer'
 
 const getLocations = (state: AppState): Location[] => state.locations.entities

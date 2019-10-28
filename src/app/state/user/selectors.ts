@@ -1,6 +1,5 @@
 import { AppState } from '../root-reducer'
-import { LatLng } from '../../types/coordinates.type'
-import { AsyncMeta } from '../../types/fetch-meta.interface'
+import { LatLng, AsyncMeta } from '../../types'
 
 const getUserCoordinates = (state: AppState): LatLng => state.user.coordinates.entity
 

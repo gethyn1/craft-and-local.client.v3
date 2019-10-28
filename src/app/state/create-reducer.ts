@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { isNil } from 'ramda'
-import { FetchActionTypes, AsyncMeta } from '../types/fetch-meta.interface'
+import { FetchActionTypes, AsyncMeta } from '../types'
 
 // index signature for handlers
 type Handlers = {

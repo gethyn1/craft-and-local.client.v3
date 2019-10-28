@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
 import { createReducer, asyncMetaReducer } from '../create-reducer'
 import * as types from './types'
-import { Category } from '../../types/category.interface'
-import { CrudMeta } from '../../types/fetch-meta.interface'
+import { Category, CrudMeta } from '../../types'
 
 const { READ_CATEGORIES_SUCCEEDED } = types
 

@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
 import { DEFAULT_ASYNC_META_STATE, createReducer } from '../create-reducer'
 import * as types from './types'
-import { AsyncMeta } from '../../types/fetch-meta.interface'
-import { LatLng } from '../../types/coordinates.type'
+import { AsyncMeta, LatLng } from '../../types'
 
 type CoordinatesState = {
   entity?: LatLng,

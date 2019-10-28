@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Location } from '../../../types/location.interface'
+import { Location } from '../../../types'
 import { InlineList } from '../../../components/inline-list'
 import { Sizes, FontSizes, Colors } from '../../../components/enums'
 import { Heading, Headings, Levels } from '../../../components/heading'

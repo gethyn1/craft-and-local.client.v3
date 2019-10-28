@@ -1,4 +1,4 @@
-import { FetchActionTypes } from '../../types/fetch-meta.interface'
+import { FetchActionTypes } from '../../types'
 
 const namespace = 'locations'
 

@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
 import { createReducer, asyncMetaReducer } from '../create-reducer'
 import * as types from './types'
-import { Location } from '../../types/location.interface'
-import { CrudMeta } from '../../types/fetch-meta.interface'
+import { Location, CrudMeta } from '../../types'
 
 const { READ_LOCATIONS_SUCCEEDED } = types
 

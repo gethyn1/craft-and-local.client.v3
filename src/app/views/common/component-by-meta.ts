@@ -1,4 +1,4 @@
-import { AsyncMeta } from '../../types/fetch-meta.interface'
+import { AsyncMeta } from '../../types'
 
 type ComponentByMetaProps = {
   meta: AsyncMeta,

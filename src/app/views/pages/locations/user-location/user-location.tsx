@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { prop } from 'ramda'
-import { LatLng } from '../../../../types/coordinates.type'
-import { AsyncMeta } from '../../../../types/fetch-meta.interface'
+import { LatLng, AsyncMeta } from '../../../../types'
 import { ComponentByMeta } from '../../../common/component-by-meta'
 
 const { useEffect } = React

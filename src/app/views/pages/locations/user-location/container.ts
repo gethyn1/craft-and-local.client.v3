@@ -1,8 +1,7 @@
 import { connect } from 'react-redux'
 import { user, AppState } from '../../../../state'
 import { UserLocation } from './user-location'
-import { LatLng } from '../../../../types/coordinates.type'
-import { AsyncMeta } from '../../../../types/fetch-meta.interface'
+import { LatLng, AsyncMeta } from '../../../../types'
 
 type MappedState = {
   coordinates?: LatLng,
