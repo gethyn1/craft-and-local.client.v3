@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { createReducer } from '../create-reducer'
 import * as types from './types'
-import { FetchMeta } from '../../types/fetch-meta.interface'
+import { AsyncMeta } from '../../types/fetch-meta.interface'
 import { LatLng } from '../../types/coordinates.type'
 
 type CoordinatesState = {
   entity?: LatLng,
-  meta: FetchMeta
+  meta: AsyncMeta
 }
 
 type UserState = {
@@ -24,19 +24,19 @@ const coordinatesHandlers = {
 
 const coordinatesMetaHandlers = {
   [types.GET_USER_COORDINATES_REQUESTED]: (
-    state: FetchMeta
+    state: AsyncMeta
   ) => ({
     ...state,
     isLoading: true
   }),
   [types.GET_USER_COORDINATES_SUCCEEDED]: (
-    state: FetchMeta
+    state: AsyncMeta
   ) => ({
     ...state,
     hasLoaded: true
   }),
   [types.GET_USER_COORDINATES_FAILED]: (
-    state: FetchMeta
+    state: AsyncMeta
   ) => ({
     ...state,
     hasErrored: true

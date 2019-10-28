@@ -1,7 +1,7 @@
-import { FetchMeta } from '../../types/fetch-meta.interface'
+import { AsyncMeta } from '../../types/fetch-meta.interface'
 
 type ComponentByMetaProps = {
-  meta: FetchMeta,
+  meta: AsyncMeta,
   isLoading: React.ReactNode,
   hasLoaded: React.ReactNode,
   hasErrored: React.ReactNode

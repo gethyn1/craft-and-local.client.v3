@@ -1,11 +1,11 @@
-export interface FetchMeta {
+export interface AsyncMeta {
   isLoading: Boolean,
   hasLoaded: Boolean,
   hasErrored: boolean
 }
 
 export interface CrudMeta {
-  read?: FetchMeta
+  read?: AsyncMeta
 }
 
 export type FetchActionTypes = [string, string, string]
