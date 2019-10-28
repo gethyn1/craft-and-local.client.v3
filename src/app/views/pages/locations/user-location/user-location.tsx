@@ -12,12 +12,14 @@ type UserLocationProps = {
   meta: AsyncMeta
 }
 
+const shouldGetUserCoordinates = (meta: AsyncMeta): boolean => !meta.isLoading && !meta.hasLoaded && !meta.hasErrored
+
 const UserLocation = ({ getUserCoordinates, coordinates, meta }: UserLocationProps) => {
   useEffect(() => {
-    if (!meta.isLoading && !meta.hasLoaded && !meta.hasErrored) {
+    if (shouldGetUserCoordinates(meta)) {
       getUserCoordinates()
     }
-  }, [])
+  }, [getUserCoordinates, meta])
 
   return <ComponentByMeta
     hasLoaded={<p>Latitude: {prop('latitude', coordinates)}, Longitude: {prop('longitude', coordinates)}</p>}

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { AppLayout } from '../../layouts'
-import { PopulatedLocation } from '../../../types/location.interface'
+import { Location } from '../../../types/location.interface'
 import { CrudMeta } from '../../../types/fetch-meta.interface'
 import { LatLng } from '../../../types/coordinates.type'
 import { Grid } from '../../../components/grid'
@@ -27,7 +27,7 @@ const LocationsSkeleton = ({ size }: { size: number }) => {
   )
 }
 
-const LocationsGrid = ({ locations }: { locations: PopulatedLocation[] }) => (
+const LocationsGrid = ({ locations }: { locations: Location[] }) => (
   <Grid>
     {locations.map(location => <LocationCard key={location.id} location={location} />)}
   </Grid>
@@ -35,17 +35,17 @@ const LocationsGrid = ({ locations }: { locations: PopulatedLocation[] }) => (
 
 interface LocationsProps {
   getLocations: ({ coordinates }: GetLocations) => void,
-  getCategories: () => void,
-  locations: PopulatedLocation[],
+  locations: Location[],
   meta: CrudMeta,
   coordinates: LatLng
 }
 
-const Locations = ({ getLocations, getCategories, locations, meta, coordinates }: LocationsProps) => {
+const Locations = ({ getLocations, locations, meta, coordinates }: LocationsProps) => {
   useEffect(() => {
-    getCategories()
-    getLocations({ coordinates })
-  }, [getLocations, getCategories, coordinates])
+    if (coordinates) {
+      getLocations({ coordinates })
+    }
+  }, [getLocations, coordinates])
 
   return (
     <AppLayout>
