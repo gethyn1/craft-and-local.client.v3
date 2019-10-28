@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 import { apiService } from '../middleware'
 import { rootReducer } from '../state'
 
@@ -10,7 +11,7 @@ const store = createStore(
   rootReducer,
   preloadedState,
   composeEnhancers(
-    applyMiddleware(apiService)
+    applyMiddleware(apiService, thunk)
   )
 )
 
