@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { createReducer } from '../create-reducer'
+import { DEFAULT_ASYNC_META_STATE, createReducer } from '../create-reducer'
 import * as types from './types'
 import { AsyncMeta } from '../../types/fetch-meta.interface'
 import { LatLng } from '../../types/coordinates.type'
@@ -43,12 +43,11 @@ const coordinatesMetaHandlers = {
   })
 }
 
-const defaultMetaState = { isLoading: false, hasLoaded: false, hasErrored: false }
 
 const reducer = combineReducers({
   coordinates: combineReducers({
     entity: createReducer(null, coordinatesHandlers),
-    meta: createReducer(defaultMetaState, coordinatesMetaHandlers)
+    meta: createReducer(DEFAULT_ASYNC_META_STATE, coordinatesMetaHandlers)
   })
 })
 

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { isNil } from 'ramda'
-import { FetchActionTypes } from '../types/fetch-meta.interface'
+import { FetchActionTypes, AsyncMeta } from '../types/fetch-meta.interface'
 
 // index signature for handlers
 type Handlers = {
@@ -12,41 +12,35 @@ type Operation = {
   types: FetchActionTypes
 }
 
-const createReducer = (initialState: any, handlers: Handlers) => {
-  return (state = initialState, action) => {
-    if (handlers.hasOwnProperty(action.type)) {
-      return handlers[action.type](state, action)
-    } else {
-      return state
-    }
-  }
+const DEFAULT_ASYNC_META_STATE: AsyncMeta = {
+  isLoading: false,
+  hasLoaded: false,
+  hasErrored: false
 }
 
-const createFetchMetaReducer = (types: FetchActionTypes) => {
+const createReducer = (initialState: any, handlers: Handlers) =>
+  (state = initialState, action: { type: string }) =>
+    handlers.hasOwnProperty(action.type) ? handlers[action.type](state, action) : state
+
+const createFetchMetaReducer = (types: FetchActionTypes): Function => {
   if (isNil(types)) {
     return null
   }
 
-  const initialState = {
-    isLoading: false,
-    hasLoaded: false,
-    hasErrored: false
-  }
-
   const [requested, succeeded, failed] = types
 
-  return createReducer(initialState, {
-    [requested]: () => ({
+  return createReducer(DEFAULT_ASYNC_META_STATE, {
+    [requested]: (): AsyncMeta => ({
       isLoading: true,
       hasLoaded: false,
       hasErrored: false
     }),
-    [succeeded]: () => ({
+    [succeeded]: (): AsyncMeta => ({
       isLoading: false,
       hasLoaded: true,
       hasErrored: false
     }),
-    [failed]: () => ({
+    [failed]: (): AsyncMeta => ({
       isLoading: false,
       hasLoaded: false,
       hasErrored: true
@@ -63,6 +57,7 @@ const asyncMetaReducer = (operations: Operation[]) =>
   combineReducers(operations.reduce(buildAsyncMetaReducers, {}))
 
 export {
+  DEFAULT_ASYNC_META_STATE,
   createReducer,
   createFetchMetaReducer,
   asyncMetaReducer
