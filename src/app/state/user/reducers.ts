@@ -36,6 +36,7 @@ const addressHandlers = {
   }
 }
 
+// TODO import createFetchMetaReducer (rename) to avoid specifying read operation
 const reducer = combineReducers({
   coordinates: combineReducers({
     entity: createReducer(null, coordinatesHandlers),

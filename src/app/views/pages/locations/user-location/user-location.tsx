@@ -1,31 +1,31 @@
 import * as React from 'react'
-import { prop } from 'ramda'
-import { LatLng, AsyncMeta } from '../../../../types'
+import { AsyncMeta } from '../../../../types'
 import { ComponentByMeta } from '../../../common/component-by-meta'
 
 const { useEffect } = React
 
 type UserLocationProps = {
   getUserCoordinates: () => void,
-  coordinates: LatLng,
+  shouldGetUserCoordinates: boolean,
+  address?: string,
   meta: AsyncMeta
 }
 
-const shouldGetUserCoordinates = (meta: AsyncMeta): boolean => !meta.isLoading && !meta.hasLoaded && !meta.hasErrored
-
-const UserLocation = ({ getUserCoordinates, coordinates, meta }: UserLocationProps) => {
+const UserLocation = ({ getUserCoordinates, shouldGetUserCoordinates, address, meta }: UserLocationProps) => {
   useEffect(() => {
-    if (shouldGetUserCoordinates(meta)) {
+    if (shouldGetUserCoordinates) {
       getUserCoordinates()
     }
   }, [getUserCoordinates, meta])
 
-  return <ComponentByMeta
-    hasLoaded={<p>Latitude: {prop('latitude', coordinates)}, Longitude: {prop('longitude', coordinates)}</p>}
-    isLoading={<p>Loading user location</p>}
-    hasErrored={<p>There was an error loading user location</p>}
-    meta={meta}
-  />
+  return (
+    <ComponentByMeta
+      hasLoaded={<p>Locations near {address}</p>}
+      isLoading={<p>Finding your location ...</p>}
+      hasErrored={<p>There was an error finding your location.</p>}
+      meta={meta}
+    />
+  )
 }
 
 export {

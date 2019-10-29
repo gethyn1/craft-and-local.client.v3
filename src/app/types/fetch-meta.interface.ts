@@ -1,6 +1,6 @@
 export interface AsyncMeta {
-  isLoading: Boolean,
-  hasLoaded: Boolean,
+  isLoading: boolean,
+  hasLoaded: boolean,
   hasErrored: boolean
 }
 
