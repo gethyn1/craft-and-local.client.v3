@@ -3,7 +3,7 @@ import { LatLng, AsyncMeta } from '../../types'
 
 const getUserCoordinates = (state: AppState): LatLng => state.user.coordinates.entity
 
-const getUserCoordinatesMeta = (state: AppState): AsyncMeta => state.user.coordinates.meta
+const getUserCoordinatesMeta = (state: AppState): AsyncMeta => state.user.coordinates.meta.read
 
 export {
   getUserCoordinates,
