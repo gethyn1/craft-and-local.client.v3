@@ -7,19 +7,23 @@ enum Methods {
 
 type CallApiAction = {
   method?: Methods,
-  endpoint: string,
+  endpoint?: string,
+  url?: string,
   types: string[],
-  body?: {}
+  body?: {},
+  adapter?: (json: {}) => any
 }
 
-const createCallApiAction = ({ method, endpoint, types, body }: CallApiAction) => ({
+const createCallApiAction = ({ method, endpoint, url, types, body, adapter }: CallApiAction) => ({
   // TODO type is added as integration test (react testing library) throws an error if type is undefined
   type: CALL_API,
   [CALL_API]: {
     method,
     endpoint,
+    url,
     types,
-    body
+    body,
+    adapter
   }
 })
 

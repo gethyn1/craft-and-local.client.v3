@@ -1,11 +1,12 @@
-import { path } from 'ramda'
+import { prop } from 'ramda'
 
-const API_BASE = 'http://localhost:5000'
+const API_BASE = process.env.API_BASE_URL
 const CALL_API = 'CALL_API'
+
+const transformResponse = (json, adapter = prop('data')) => adapter(json)
 
 // TODO: General tidy up and refactor
 // TODO: test API service
-// TODO: trigger meta status messages for network requests
 const apiService = (store) => (next) => (action) => {
   const apiType = action[CALL_API]
 
@@ -13,20 +14,18 @@ const apiService = (store) => (next) => (action) => {
     return next(action)
   }
 
-  const { types, endpoint, method, body } = apiType
+  const { types, endpoint, method, body, url, adapter } = apiType
   const [requestType, successType, failureType] = types
 
   next({ type: requestType })
 
+  const requestUrl = url || `${API_BASE}${endpoint}`
+
   return fetch(
-    `${API_BASE}${endpoint}`,
+    requestUrl,
     {
       method: method || 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
       mode: 'cors',
-      credentials: 'include',
       body: JSON.stringify(body)
     })
     .then((response) => {
@@ -38,7 +37,12 @@ const apiService = (store) => (next) => (action) => {
       return response.json()
     })
     .then((json) => {
-      return next({ type: successType, payload: path(['data'], json) })
+      const errors = prop('errors', json)
+      if (errors) {
+        throw new Error(JSON.stringify(errors))
+      }
+      console.log('- - - - - - - - >', transformResponse(json, adapter))
+      return next({ type: successType, payload: transformResponse(json, adapter) })
     })
     .catch((error) => {
       console.log(error)
