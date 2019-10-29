@@ -14,7 +14,6 @@ import * as types from './types'
 
 const entityHandlers = {
   [types.READ_CLAIM_SUCCEEDED]: (state, action) => {
-    console.log(action)
     return action.payload.claim
   }
 }

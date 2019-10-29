@@ -41,7 +41,6 @@ const apiService = (store) => (next) => (action) => {
       if (errors) {
         throw new Error(JSON.stringify(errors))
       }
-      console.log('- - - - - - - - >', transformResponse(json, adapter))
       return next({ type: successType, payload: transformResponse(json, adapter) })
     })
     .catch((error) => {
