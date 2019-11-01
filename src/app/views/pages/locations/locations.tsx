@@ -12,6 +12,7 @@ import { Skeleton } from '../../../components/skeleton'
 import { Card } from '../../../components/card'
 import { ComponentByMeta } from '../../common/component-by-meta'
 import { UserLocation } from './user-location'
+import { Map } from './map'
 
 const { useEffect } = React
 
@@ -48,6 +49,7 @@ const Locations = ({ getLocations, locations, meta, coordinates }: LocationsProp
   return (
     <AppLayout>
       <UserLocation />
+      <Map />
       <Container>
         <Box size={Sizes.LARGE}>
           <Heading as={Headings.H1} level={Levels.LEVEL_2}>Locations</Heading>
