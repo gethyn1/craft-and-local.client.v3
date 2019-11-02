@@ -13,10 +13,8 @@ const onBoundsChange = (e) => {
 /**
  * TO DO:
  *
- * - Set center from user lat lng
  * - Use styled component for map
  * - Map loading state
- * - Set zoom based on locations displayed in list
  * - Update locations fetched from API based on map zoom (`'bounds_changed'` event)
  * - Handle not being able to get user location
  * - Handle scriptError
@@ -37,18 +35,11 @@ type MapProps = {
   markers: Marker[]
 }
 
-const addMarkerToMap = (map) => (marker: Marker): void => {
-  const m = new window['google'].maps.Marker({
-    title: marker.title,
-    position: marker.position,
-    map
-  })
-}
-
 const Map = ({ center, markers }: MapProps) => {
   const googleMapEl = useRef(null)
   const [scriptLoaded, scriptError] = useScript(GOOGLE_MAPS_URL)
   const [map, setMap] = useState(null)
+  const [bounds, setBounds] = useState(null)
 
   if (scriptLoaded && !map && center) {
     setMap(new window['google'].maps.Map(googleMapEl.current, {
@@ -56,18 +47,27 @@ const Map = ({ center, markers }: MapProps) => {
       zoom: 14
     }))
 
+    setBounds(new window['google'].maps.LatLngBounds())
+
     // map.addListener('bounds_changed', onBoundsChange)
   }
 
   if (map) {
-    markers.forEach(addMarkerToMap(map))
+    markers.forEach((marker: Marker): void => {
+      const m = new window['google'].maps.Marker({
+        title: marker.title,
+        position: marker.position,
+        map
+      })
+
+      bounds.extend(m.getPosition())
+    })
+
+    map.fitBounds(bounds)
   }
 
   return (
-    <React.Fragment>
-      <div>Script loaded: <b>{scriptLoaded.toString()}</b>. Error: <b>{scriptError.toString()}</b></div>
       <div ref={googleMapEl} style={{width: '100%', height: '400px' }} />
-    </React.Fragment>
   )
 }
 
