@@ -1,1 +1,1 @@
-export { container as Map } from './container'
+export { Map, GoogleLatLng, Marker } from './map'

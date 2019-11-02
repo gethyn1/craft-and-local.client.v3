@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { useScript } from './use-script'
-import { LatLng } from '../../../../types'
 
 const { useRef, useState } = React
 
@@ -23,30 +22,45 @@ const onBoundsChange = (e) => {
  * - Handle scriptError
  */
 
-type MapProps = {
-  center: LatLng,
-  userLocationHasLoaded: boolean
+type GoogleLatLng = {
+  lat: number,
+  lng: number
 }
 
-const Map = ({ center, userLocationHasLoaded }: MapProps) => {
+type Marker = {
+  title: string,
+  position: GoogleLatLng
+}
+
+type MapProps = {
+  center?: GoogleLatLng,
+  markers: Marker[]
+}
+
+const addMarkerToMap = (map) => (marker: Marker): void => {
+  const m = new window['google'].maps.Marker({
+    title: marker.title,
+    position: marker.position,
+    map
+  })
+}
+
+const Map = ({ center, markers }: MapProps) => {
   const googleMapEl = useRef(null)
   const [scriptLoaded, scriptError] = useScript(GOOGLE_MAPS_URL)
-  const [mapLoaded, setMapLoaded] = useState(false)
+  const [map, setMap] = useState(null)
 
-  if (scriptLoaded && !mapLoaded && userLocationHasLoaded) {
-    const { latitude, longitude } = center
-
-    const map = new window.google.maps.Map(googleMapEl.current, {
-      center: {
-        lat: latitude,
-        lng: longitude
-      },
+  if (scriptLoaded && !map && center) {
+    setMap(new window['google'].maps.Map(googleMapEl.current, {
+      center,
       zoom: 14
-    })
+    }))
 
-    map.addListener('bounds_changed', onBoundsChange)
+    // map.addListener('bounds_changed', onBoundsChange)
+  }
 
-    setMapLoaded(true)
+  if (map) {
+    markers.forEach(addMarkerToMap(map))
   }
 
   return (
@@ -58,5 +72,7 @@ const Map = ({ center, userLocationHasLoaded }: MapProps) => {
 }
 
 export {
+  GoogleLatLng,
+  Marker,
   Map
 }

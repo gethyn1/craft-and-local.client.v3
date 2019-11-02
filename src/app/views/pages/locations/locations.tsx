@@ -12,7 +12,7 @@ import { Skeleton } from '../../../components/skeleton'
 import { Card } from '../../../components/card'
 import { ComponentByMeta } from '../../common/component-by-meta'
 import { UserLocation } from './user-location'
-import { Map } from './map'
+import { Map, GoogleLatLng, Marker } from './map'
 
 const { useEffect } = React
 
@@ -39,6 +39,21 @@ interface LocationsProps {
   coordinates: LatLng
 }
 
+// TODO: consider transforming all coordinates to Google LatLng on
+// API response (user and locations)
+const latLngtoGoogleLatLng = (latLng: LatLng): GoogleLatLng => ({
+  lat: latLng.latitude,
+  lng: latLng.longitude
+})
+
+const buildMarker = (location: Location): Marker => ({
+  title: location.title,
+  position: {
+    lat: location.location.coordinates[1],
+    lng: location.location.coordinates[0]
+  }
+})
+
 const Locations = ({ getLocations, locations, meta, coordinates }: LocationsProps) => {
   useEffect(() => {
     if (coordinates) {
@@ -49,7 +64,7 @@ const Locations = ({ getLocations, locations, meta, coordinates }: LocationsProp
   return (
     <AppLayout>
       <UserLocation />
-      <Map />
+      <Map center={coordinates ? latLngtoGoogleLatLng(coordinates) : null} markers={locations.map(buildMarker)} />
       <Container>
         <Box size={Sizes.LARGE}>
           <Heading as={Headings.H1} level={Levels.LEVEL_2}>Locations</Heading>
