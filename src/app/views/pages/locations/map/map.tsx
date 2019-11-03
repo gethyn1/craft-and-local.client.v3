@@ -18,6 +18,9 @@ const onBoundsChange = (e) => {
  * - Update locations fetched from API based on map zoom (`'bounds_changed'` event)
  * - Handle not being able to get user location
  * - Handle scriptError
+ * - Tidy component
+ * - Tidy useScript hook
+ * - Pass zoom as prop
  */
 
 type GoogleLatLng = {

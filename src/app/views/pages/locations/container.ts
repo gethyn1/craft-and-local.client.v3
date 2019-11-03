@@ -19,7 +19,7 @@ const mapStateToProps = (state: AppState): MappedState => ({
 })
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  getLocations: ({ coordinates }: GetLocations) => dispatch(locations.actions.getLocations({ coordinates }))
+  getLocations: ({ coordinates, maxDistance }: GetLocations) => dispatch(locations.actions.getLocations({ coordinates, maxDistance }))
 })
 
 const container = connect(mapStateToProps, mapDispatchToProps)(Locations)

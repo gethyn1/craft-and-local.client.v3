@@ -57,7 +57,7 @@ const buildMarker = (location: Location): Marker => ({
 const Locations = ({ getLocations, locations, meta, coordinates }: LocationsProps) => {
   useEffect(() => {
     if (coordinates) {
-      getLocations({ coordinates })
+      getLocations({ coordinates, maxDistance: 10000 })
     }
   }, [getLocations, coordinates])
 
