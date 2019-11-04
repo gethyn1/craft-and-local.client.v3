@@ -36,7 +36,8 @@ interface LocationsProps {
   getLocations: ({ coordinates }: GetLocations) => void,
   locations: Location[],
   meta: CrudMeta,
-  coordinates: LatLng
+  coordinates: LatLng,
+  searchRadius: number
 }
 
 // TODO: consider transforming all coordinates to Google LatLng on
@@ -54,12 +55,15 @@ const buildMarker = (location: Location): Marker => ({
   }
 })
 
-const Locations = ({ getLocations, locations, meta, coordinates }: LocationsProps) => {
+const Locations = ({ getLocations, locations, meta, coordinates, searchRadius }: LocationsProps) => {
   useEffect(() => {
     if (coordinates) {
-      getLocations({ coordinates, maxDistance: 10000 })
+      getLocations({
+        coordinates,
+        maxDistance: searchRadius
+      })
     }
-  }, [getLocations, coordinates])
+  }, [getLocations, coordinates, searchRadius])
 
   return (
     <AppLayout>
