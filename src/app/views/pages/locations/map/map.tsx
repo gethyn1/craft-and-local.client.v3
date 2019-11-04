@@ -6,21 +6,22 @@ const { useRef, useState } = React
 const GOOGLE_MAPS_API_PUBLIC_KEY = process.env.GOOGLE_MAPS_API_PUBLIC_KEY
 const GOOGLE_MAPS_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_PUBLIC_KEY}&libraries=geometry`
 
-const onBoundsChange = (e) => {
-  console.log('Bounds changed', e)
-}
-
 /**
  * TO DO:
  *
  * - Use styled component for map
  * - Map loading state
- * - Update locations fetched from API based on map zoom (`'bounds_changed'` event)
  * - Handle not being able to get user location
  * - Handle scriptError
  * - Tidy component
  * - Tidy useScript hook
  * - Pass zoom as prop
+ *
+ * Search rules:
+ * 1. Load all results within certain radius of user
+ * 2. Allow user to set radius for search
+ *    - If lost of results for the search radius, paginate the results in the UI (AirBnB)
+ * 3. Allow user to choose location
  */
 
 type GoogleLatLng = {
@@ -51,8 +52,6 @@ const Map = ({ center, markers }: MapProps) => {
     }))
 
     setBounds(new window['google'].maps.LatLngBounds())
-
-    // map.addListener('bounds_changed', onBoundsChange)
   }
 
   if (map) {
