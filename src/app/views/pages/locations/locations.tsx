@@ -67,7 +67,6 @@ const Locations = ({ getLocations, locations, meta, coordinates, searchRadius }:
 
   return (
     <AppLayout>
-      <UserLocation />
       <Map
         center={coordinates ? latLngtoGoogleLatLng(coordinates) : null}
         markers={locations.map(buildMarker)}
@@ -75,6 +74,7 @@ const Locations = ({ getLocations, locations, meta, coordinates, searchRadius }:
       <Container>
         <Box size={Sizes.LARGE}>
           <Heading as={Headings.H1} level={Levels.LEVEL_2}>Locations</Heading>
+          <UserLocation />
           <ComponentByMeta
             hasLoaded={<LocationsGrid locations={locations} />}
             isLoading={<LocationsSkeleton size={4} />}
