@@ -65,7 +65,9 @@ const Map = ({ center, markers }: MapProps) => {
       bounds.extend(m.getPosition())
     })
 
-    map.fitBounds(bounds)
+    if (markers.length) {
+      map.fitBounds(bounds)
+    }
   }
 
   return (

@@ -1,3 +1,11 @@
+import { FetchActionTypes } from '../../types'
+
 const namespace = 'search'
 
 export const SEARCH_RADIUS_UPDATED = `${namespace}/SEARCH_RADIUS_UPDATED`
+
+export const FORWARD_GEOCODING_REQUESTED = `${namespace}/FORWARD_GEOCODING_REQUESTED`
+export const FORWARD_GEOCODING_SUCCEEDED = `${namespace}/FORWARD_GEOCODING_SUCCEEDED`
+export const FORWARD_GEOCODING_FAILED = `${namespace}/FORWARD_GEOCODING_FAILED`
+
+export const FORWARD_GEOCODE_REQUEST: FetchActionTypes = [FORWARD_GEOCODING_REQUESTED, FORWARD_GEOCODING_SUCCEEDED, FORWARD_GEOCODING_FAILED]
