@@ -14,7 +14,7 @@ type Box = {
   size: Sizes
 }
 
-const Box = ({ size, ...props }: Box) => (
+const Box = ({ size = Sizes.SMALL, ...props }: Box) => (
   <StyledBox
     {...props}
     p={getSpace(size)}
