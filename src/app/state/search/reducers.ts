@@ -1,20 +1,37 @@
 import { combineReducers } from 'redux'
 import { createReducer, asyncMetaReducer } from '../create-reducer'
 import * as types from './types'
+import { CrudMeta, LatLng, ForwardGeocodeResult } from '../../types'
 
 const DEFAULT_SEARCH_RADIUS = 10000
+const DEFAULT_FORWARD_GEOCODING_STATE = []
 
 type SearchState = {
-  radius: number
+  parameters: {
+    radius: number,
+    coordinates: LatLng
+  },
+  forwardGeocode: {
+    entities: ForwardGeocodeResult[],
+    meta: CrudMeta
+  }
 }
 
-const searchradiusHandlers = {
+const searchParameterHandlers = {
   [types.SEARCH_RADIUS_UPDATED]: (
-    state: number,
+    state: { radius: number, coordinates: LatLng },
     action: { type: typeof types.SEARCH_RADIUS_UPDATED, payload: number }
-  ) => {
-    return action.payload
-  }
+  ) => ({
+    ...state,
+    radius: action.payload
+  }),
+  [types.SEARCH_COORDINATES_UPDATED]: (
+    state: { radius: number, coordinates: LatLng },
+    action: { type: typeof types.SEARCH_RADIUS_UPDATED, payload: number }
+  ) => ({
+    ...state,
+    coordinates: action.payload
+  })
 }
 
 const forwardGeocodeHandlers = {
@@ -23,13 +40,19 @@ const forwardGeocodeHandlers = {
     action: { type: typeof types.FORWARD_GEOCODING_SUCCEEDED, payload: string[] }
   ) => {
     return action.payload
+  },
+  [types.FORWARD_GEOCODING_RESET]: (
+    state: string[],
+    action: { type: typeof types.FORWARD_GEOCODING_RESET, payload: string[] }
+  ) => {
+    return DEFAULT_FORWARD_GEOCODING_STATE
   }
 }
 
 const reducer = combineReducers({
-  radius: createReducer(DEFAULT_SEARCH_RADIUS, searchradiusHandlers),
+  parameters: createReducer({ radius: DEFAULT_SEARCH_RADIUS, coordinates: null }, searchParameterHandlers),
   forwardGeocode: combineReducers({
-    entities: createReducer([], forwardGeocodeHandlers),
+    entities: createReducer(DEFAULT_FORWARD_GEOCODING_STATE, forwardGeocodeHandlers),
     meta: asyncMetaReducer([{ operation: 'read', types: types.FORWARD_GEOCODE_REQUEST }])
   })
 })
