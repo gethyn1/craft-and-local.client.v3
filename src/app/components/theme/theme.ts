@@ -9,6 +9,9 @@ const theme = {
   },
   fontSizes: [12, 14, 16, 18, 20, 22, 24, 26, 28, 32, 36, 40, 48],
   fontFamily: '"Karla", sans-serif',
+  fontWeights: {
+    bold: 700
+  },
   colors: {
     primary: '#007ce0',
     darkGrey: '#666',
