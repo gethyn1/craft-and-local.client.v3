@@ -30,16 +30,16 @@ const useRefBlur = ({ ref, onBlur }) => {
 
 type SearchProps = {
   results: ForwardGeocodeResult[],
-  onKeyUp: (value: string) => void,
+  onChange: (value: string) => void,
   onSelectResult: (result: ForwardGeocodeResult) => void,
-  onSearchBoxBlur: () => void
+  onSearchBoxBlur: () => void,
+  query: string
 }
 
 // TODO add loading state for results
-// TODO clear results and populate input on select
-const Search = ({ onKeyUp, results, onSelectResult, onSearchBoxBlur }: SearchProps) => {
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    onKeyUp(e.currentTarget.value)
+const Search = ({ onChange, results, onSelectResult, onSearchBoxBlur, query }: SearchProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
   }
 
   const ref = useRef(null)
@@ -49,10 +49,11 @@ const Search = ({ onKeyUp, results, onSelectResult, onSearchBoxBlur }: SearchPro
     <SearchWrapper ref={ref}>
       <form>
         <Input
-          onKeyUp={handleKeyUp}
+          onChange={handleChange}
           type="text"
           placeholder="Search by location"
-          size={Sizes.MEDIUM}
+          level={Sizes.MEDIUM}
+          value={query || ''}
         />
         <Results results={results} onResultClick={onSelectResult} />
       </form>

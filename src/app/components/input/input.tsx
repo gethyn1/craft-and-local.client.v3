@@ -10,20 +10,17 @@ const StyledInput = styled.input<SpaceProps>`
   ${space}
 `
 
-type Input = {
-  size?: Sizes,
-  placeholder?: string,
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void,
-  type?: string,
-  list?: string
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  // TODO: input has a native 'size' attribute so using 'level'. Should
+  // update 'Sizes' and 'size' references in other components for consistency
+  level?: Sizes
 }
 
 // TODO apply HTML input attributes instead of defining in Input type
-const Input = ({ size = Sizes.SMALL, ...props }: Input & SpaceProps) => (
+const Input = ({ level = Sizes.SMALL, ...props }: InputProps) => (
   <StyledInput
     {...props}
-    p={getSpace(size)}
+    p={getSpace(level)}
   />
 )
 
