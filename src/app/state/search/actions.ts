@@ -18,6 +18,8 @@ const transformResponse = compose(map(transformResult), path(['body', 'features'
 // TODO find Mapbox API types
 // TODO better throttling of API requests
 const forwardGeocode = (query: string) => (dispatch: Function): void => {
+  dispatch({ type: types.SEARCH_QUERY_UPDATED, payload: query })
+
   if (query.length < 4) {
     return null
   }
@@ -49,8 +51,14 @@ const resetForwardGeocodeResults = () => ({
   type: types.FORWARD_GEOCODING_RESET
 })
 
+const setSearchQuery = (query: string) => ({
+  type: types.SEARCH_QUERY_UPDATED,
+  payload: query
+})
+
 export {
   forwardGeocode,
   setSearchCoordinates,
-  resetForwardGeocodeResults
+  resetForwardGeocodeResults,
+  setSearchQuery
 }
