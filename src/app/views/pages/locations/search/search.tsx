@@ -38,7 +38,7 @@ type SearchProps = {
 
 // TODO add loading state for results
 const Search = ({ onChange, results, onSelectResult, onSearchBoxBlur, query }: SearchProps) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void  => {
     onChange(e.target.value)
   }
 

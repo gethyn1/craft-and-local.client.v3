@@ -15,15 +15,8 @@ const transformResult = compose(pick(['id', 'text', 'region', 'geometry']), asso
 
 const transformResponse = compose(map(transformResult), path(['body', 'features']))
 
-// TODO find Mapbox API types
-// TODO better throttling of API requests
+// TODO find Mapbox API types (Typescript)
 const forwardGeocode = (query: string) => (dispatch: Function): void => {
-  dispatch({ type: types.SEARCH_QUERY_UPDATED, payload: query })
-
-  if (query.length < 4) {
-    return null
-  }
-
   dispatch({ type: types.FORWARD_GEOCODING_REQUESTED })
 
   geocodingService.forwardGeocode({
@@ -32,7 +25,7 @@ const forwardGeocode = (query: string) => (dispatch: Function): void => {
     types: ['neighborhood', 'locality']
   })
   .send()
-  .then((response) => {
+  .then((response: Response) => {
     dispatch({
       type: types.FORWARD_GEOCODING_SUCCEEDED,
       payload: transformResponse(response)
