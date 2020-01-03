@@ -46,9 +46,10 @@ const Search = ({ onChange, results, onSelectResult, onSearchBoxBlur, query }: S
   useRefBlur({ ref, onBlur: onSearchBoxBlur })
 
   return (
-    <SearchWrapper ref={ref}>
+    <SearchWrapper ref={ref} data-testid="search">
       <form>
         <Input
+          data-testid="search/input"
           onChange={handleChange}
           type="text"
           placeholder="Search by location"

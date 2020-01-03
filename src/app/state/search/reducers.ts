@@ -46,8 +46,8 @@ const searchParameterHandlers = {
 
 const forwardGeocodeHandlers = {
   [types.FORWARD_GEOCODING_SUCCEEDED]: (
-    state: string[],
-    action: { type: typeof types.FORWARD_GEOCODING_SUCCEEDED, payload: string[] }
+    state: ForwardGeocodeResult[],
+    action: { type: typeof types.FORWARD_GEOCODING_SUCCEEDED, payload: ForwardGeocodeResult[] }
   ) => {
     return action.payload
   },

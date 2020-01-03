@@ -48,7 +48,7 @@ type ResultsProps = {
 
 const Results = ({ results, onResultClick }: ResultsProps) =>
   results.length ? (
-    <ResultsWrapper>
+    <ResultsWrapper data-testid="search/results">
       <BareList items={results} keyProp="id" renderItem={renderSearchResult(onResultClick)} size={Sizes.MEDIUM} />
     </ResultsWrapper>
   ) : null
