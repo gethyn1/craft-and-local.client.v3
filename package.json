@@ -10,10 +10,10 @@
     "build": "parcel build src/app/index.html",
     "test": "npm run test:lint && npm run test:jest",
     "test:lint": "eslint src --ext .js,.jsx",
-    "test:jest": "jest"
+    "test:jest": "jest",
+    "test:jest:clear": "jest --clearCache"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.7.4",
     "@mapbox/mapbox-sdk": "^0.8.0",
     "babel-jest": "^24.9.0",
     "normalize.css": "^8.0.1",
@@ -33,6 +33,7 @@
     "@babel/core": "^7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

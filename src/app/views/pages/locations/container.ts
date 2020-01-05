@@ -16,7 +16,7 @@ type MappedState = {
 const mapStateToProps = (state: AppState): MappedState => ({
   locations: selectors.getLocations(state),
   meta: selectors.getLocationsMeta(state),
-  coordinates: user.selectors.getUserCoordinates(state),
+  coordinates: search.selectors.getSearchCoordinates(state) || user.selectors.getUserCoordinates(state),
   searchRadius: search.selectors.getSearchRadius(state)
 })
 

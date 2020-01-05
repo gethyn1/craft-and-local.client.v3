@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { useScript } from './use-script'
+import { useScript } from '../use-script'
 
-const { useRef, useState } = React
+const { useRef, useState, useEffect } = React
 
 const GOOGLE_MAPS_API_PUBLIC_KEY = process.env.GOOGLE_MAPS_API_PUBLIC_KEY
 const GOOGLE_MAPS_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_PUBLIC_KEY}&libraries=geometry`
@@ -44,6 +44,16 @@ const Map = ({ center, markers }: MapProps) => {
   const [scriptLoaded, scriptError] = useScript(GOOGLE_MAPS_URL)
   const [map, setMap] = useState(null)
   const [bounds, setBounds] = useState(null)
+
+  useEffect(() => {
+    if (map) {
+      map.panTo(center)
+      // TODO
+      // - delete active markers
+      // - set new markers
+      // - update bounds
+    }
+  }, [center])
 
   if (scriptLoaded && !map && center) {
     setMap(new window['google'].maps.Map(googleMapEl.current, {
