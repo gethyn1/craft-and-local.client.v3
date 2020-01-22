@@ -2,11 +2,6 @@ import { LatLng } from "../../../../types"
 
 /**
  * Get distance in straight line between two points (haversine formula https://en.wikipedia.org/wiki/Haversine_formula)
- *
- * @param lat1 latitude of first location
- * @param lon1 longitude of first location
- * @param lat2 latitude of second location
- * @param lon2 longitutde of second location
  */
 function getDistanceFromLatLonInMetres(from: LatLng, to: LatLng): number {
   const R = 6371 // Radius of the earth in km
@@ -35,5 +30,6 @@ function getDistance (from: LatLng, to: LatLng): string {
 }
 
 export {
+  getDistanceFromLatLonInMetres,
   getDistance
 }
