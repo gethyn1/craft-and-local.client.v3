@@ -4,8 +4,12 @@ type Coordinates = {
 }
 
 type GetLocations = {
-  coordinates: Coordinates,
-  maxDistance: number
+  coordinates?: Coordinates,
+  maxDistance?: number,
+  minDistance?: number,
+  limit?: number,
+  marker?: string,
+  exclude?: string
 }
 
 export {

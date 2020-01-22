@@ -3,7 +3,7 @@ import { createReducer, asyncMetaReducer } from '../create-reducer'
 import * as types from './types'
 import { Location, CrudMeta } from '../../types'
 
-const { READ_LOCATIONS_SUCCEEDED } = types
+const { READ_LOCATIONS_SUCCEEDED, LOAD_MORE_LOCATIONS_SUCCEEDED } = types
 
 type LocationsState = {
   entities: Location[],
@@ -16,6 +16,12 @@ const entityHandlers = {
     action: { type: typeof READ_LOCATIONS_SUCCEEDED, payload: Location[] }
   ) => {
     return action.payload
+  },
+  [LOAD_MORE_LOCATIONS_SUCCEEDED]: (
+    state: Location[],
+    action: { type: typeof LOAD_MORE_LOCATIONS_SUCCEEDED, payload: Location[] }
+  ) => {
+    return [...state, ...action.payload]
   }
 }
 
