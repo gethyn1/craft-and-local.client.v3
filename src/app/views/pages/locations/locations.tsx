@@ -14,6 +14,7 @@ import { ComponentByMeta } from '../../common/component-by-meta'
 import { UserLocation } from './user-location'
 import { MapBox } from './mapbox'
 import { Search } from './search'
+import { LoadMore } from './load-more'
 
 const { useEffect } = React
 
@@ -27,14 +28,21 @@ const LocationsSkeleton = ({ size }: { size: number }) => {
   )
 }
 
-const LocationsGrid = ({ locations }: { locations: Location[] }) => (
-  <Grid>
-    {locations.map(location => <LocationCard key={location.id} location={location} />)}
-  </Grid>
+type LocationsGridProps = {
+  locations: Location[]
+}
+
+const LocationsGrid = ({ locations }: LocationsGridProps) => (
+  <React.Fragment>
+    <Grid>
+      {locations.map(location => <LocationCard key={location.id} location={location} />)}
+    </Grid>
+    <LoadMore />
+  </React.Fragment>
 )
 
 interface LocationsProps {
-  getLocations: ({ coordinates }: GetLocations) => void,
+  getLocations: (options: GetLocations) => void,
   locations: Location[],
   meta: CrudMeta,
   coordinates: LatLng,
