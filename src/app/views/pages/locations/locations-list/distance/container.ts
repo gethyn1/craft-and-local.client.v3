@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { Distance } from './distance'
-import { user, AppState } from '../../../../state'
-import { LatLng } from '../../../../types'
+import { user, AppState } from '../../../../../state'
+import { LatLng } from '../../../../../types'
 
 const { selectors } = user
 

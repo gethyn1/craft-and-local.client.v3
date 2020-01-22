@@ -1,4 +1,4 @@
-import { LatLng } from "../../../../types"
+import { LatLng } from "../../../../../types"
 
 /**
  * Get distance in straight line between two points (haversine formula https://en.wikipedia.org/wiki/Haversine_formula)

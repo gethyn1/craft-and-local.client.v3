@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { LatLng } from '../../../../types'
+import { LatLng } from '../../../../../types'
 import { getDistance } from './get-distance'
 
 type DistanceProps = {

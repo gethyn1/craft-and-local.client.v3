@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { last } from 'ramda'
 import { LoadMore } from './load-more'
-import { locations, user, AppState, search } from '../../../../state'
-import { CrudMeta, Location, LatLng } from '../../../../types'
+import { locations, user, AppState, search } from '../../../../../state'
+import { CrudMeta, Location, LatLng } from '../../../../../types'
 import { getDistanceFromLatLonInMetres } from '../distance'
 
 const { selectors, actions } = locations

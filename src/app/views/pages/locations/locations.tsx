@@ -6,7 +6,6 @@ import { Heading, Headings, Levels } from '../../../components/heading'
 import { Container } from '../../../components/container'
 import { Box } from '../../../components/box'
 import { Sizes } from '../../../components/enums'
-import { LocationCard } from './location-card'
 import { GetLocations } from './types'
 import { Skeleton } from '../../../components/skeleton'
 import { Card } from '../../../components/card'
@@ -14,7 +13,7 @@ import { ComponentByMeta } from '../../common/component-by-meta'
 import { UserLocation } from './user-location'
 import { MapBox } from './mapbox'
 import { Search } from './search'
-import { LoadMore } from './load-more'
+import { LocationsList } from './locations-list'
 
 const { useEffect } = React
 
@@ -27,19 +26,6 @@ const LocationsSkeleton = ({ size }: { size: number }) => {
     </Grid>
   )
 }
-
-type LocationsGridProps = {
-  locations: Location[]
-}
-
-const LocationsGrid = ({ locations }: LocationsGridProps) => (
-  <React.Fragment>
-    <Grid>
-      {locations.map(location => <LocationCard key={location.id} location={location} />)}
-    </Grid>
-    <LoadMore />
-  </React.Fragment>
-)
 
 interface LocationsProps {
   getLocations: (options: GetLocations) => void,
@@ -68,7 +54,7 @@ const Locations = ({ getLocations, locations, meta, coordinates, searchRadius }:
           <UserLocation />
           <Search />
           <ComponentByMeta
-            hasLoaded={<LocationsGrid locations={locations} />}
+            hasLoaded={<LocationsList locations={locations} />}
             isLoading={<LocationsSkeleton size={4} />}
             hasErrored={<p>There was an error loading locations</p>}
             meta={meta.read}
