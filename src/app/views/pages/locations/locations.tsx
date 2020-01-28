@@ -1,15 +1,11 @@
 import * as React from 'react'
 import { AppLayout } from '../../layouts'
-import { Location, CrudMeta, LatLng } from '../../../types'
-import { Grid } from '../../../components/grid'
+import { Location, LatLng } from '../../../types'
 import { Heading, Headings, Levels } from '../../../components/heading'
 import { Container } from '../../../components/container'
 import { Box } from '../../../components/box'
 import { Sizes } from '../../../components/enums'
 import { GetLocations } from './types'
-import { Skeleton } from '../../../components/skeleton'
-import { Card } from '../../../components/card'
-import { ComponentByMeta } from '../../common/component-by-meta'
 import { UserLocation } from './user-location'
 import { MapBox } from './mapbox'
 import { Search } from './search'
@@ -17,25 +13,14 @@ import { LocationsList } from './locations-list'
 
 const { useEffect } = React
 
-const LocationsSkeleton = ({ size }: { size: number }) => {
-  const items = Array(size).fill(() => <Card size={Sizes.MEDIUM}><Skeleton /></Card>)
-
-  return (
-    <Grid>
-      {items.map((Item, i) => <Item key={i} />)}
-    </Grid>
-  )
-}
-
 interface LocationsProps {
   getLocations: (options: GetLocations) => void,
   locations: Location[],
-  meta: CrudMeta,
   coordinates: LatLng,
   searchRadius: number
 }
 
-const Locations = ({ getLocations, locations, meta, coordinates, searchRadius }: LocationsProps) => {
+const Locations = ({ getLocations, locations, coordinates, searchRadius }: LocationsProps) => {
   useEffect(() => {
     if (coordinates) {
       getLocations({
@@ -53,12 +38,7 @@ const Locations = ({ getLocations, locations, meta, coordinates, searchRadius }:
           <Heading as={Headings.H1} level={Levels.LEVEL_2}>Locations</Heading>
           <UserLocation />
           <Search />
-          <ComponentByMeta
-            hasLoaded={<LocationsList locations={locations} />}
-            isLoading={<LocationsSkeleton size={4} />}
-            hasErrored={<p>There was an error loading locations</p>}
-            meta={meta.read}
-          />
+          <LocationsList />
         </Box>
       </Container>
     </AppLayout>

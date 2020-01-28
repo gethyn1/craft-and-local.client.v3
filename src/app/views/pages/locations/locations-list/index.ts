@@ -1,1 +1,1 @@
-export { LocationsList } from './locations-list'
+export { container as LocationsList } from './container'
