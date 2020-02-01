@@ -16,8 +16,7 @@ const buildQueryString = (params: {}) =>
     .map(key => `${key}=${params[key]}`)
     .join('&')
 
-const readLocations = (fetchActionsTypes: FetchActionTypes) =>
-  ({ coordinates, minDistance, maxDistance, limit = 4, exclude }: GetLocations) => {
+const getLocations = ({ coordinates, minDistance, maxDistance, limit = 4, exclude }: GetLocations) => {
     const queryString = buildQueryString({
       latlng: `${coordinates.latitude},${coordinates.longitude}`,
       maxdistance: maxDistance,
@@ -28,14 +27,10 @@ const readLocations = (fetchActionsTypes: FetchActionTypes) =>
 
     return createCallApiAction({
       endpoint: `/locations?${queryString}`,
-      types: fetchActionsTypes
+      types: types.READ
     })
   }
 
-const getLocations = readLocations(types.READ)
-const loadMoreLocations = readLocations(types.LOAD_MORE)
-
 export {
-  getLocations,
-  loadMoreLocations
+  getLocations
 }

@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch: Function) => ({
     const minDistance = getDistanceFromLatLonInMetres(coordinates, lastLatLng)
     const exclude = getIdsAtSearchProximity(locations, coordinates, minDistance).join(',')
 
-    dispatch(actions.loadMoreLocations({
+    dispatch(actions.getLocations({
       coordinates,
       minDistance,
       exclude

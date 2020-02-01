@@ -15,12 +15,6 @@ const entityHandlers = {
     state: Location[],
     action: { type: typeof READ_LOCATIONS_SUCCEEDED, payload: Location[] }
   ) => {
-    return action.payload
-  },
-  [LOAD_MORE_LOCATIONS_SUCCEEDED]: (
-    state: Location[],
-    action: { type: typeof LOAD_MORE_LOCATIONS_SUCCEEDED, payload: Location[] }
-  ) => {
     return [...state, ...action.payload]
   }
 }
