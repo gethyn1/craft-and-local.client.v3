@@ -1,4 +1,4 @@
-type Coordinates = [number, number]
+export type Coordinates = [number, number]
 
 // TODO only one of Geometry or GeoJson is required
 interface Geometry {
@@ -6,8 +6,12 @@ interface Geometry {
   coordinates: Coordinates
 }
 
+export enum GeoJsonType {
+  POINT = 'Point'
+}
+
 export type GeoJson = {
-  type: 'Point',
+  type: GeoJsonType,
   coordinates: Coordinates
 }
 

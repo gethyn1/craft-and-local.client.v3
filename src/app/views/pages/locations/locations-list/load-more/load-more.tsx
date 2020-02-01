@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Button } from '../../../../../components/button'
 import { Location, LatLng } from '../../../../../types'
+import { LOAD_MORE } from '../text'
 
 type LoadMoreProps = {
   locations: Location[],
@@ -11,7 +12,7 @@ type LoadMoreProps = {
 const LoadMore = ({ onLoadMore, locations, coordinates }: LoadMoreProps) => {
   const handleLoadMore = () => onLoadMore(locations, coordinates)
   return (
-    <Button text="Load more" onClick={handleLoadMore} />
+    <Button text={LOAD_MORE} onClick={handleLoadMore} />
   )
 }
 
