@@ -5,6 +5,7 @@ import { Heading, Headings, Levels } from '../../../components/heading'
 import { Container } from '../../../components/container'
 import { Box } from '../../../components/box'
 import { Sizes } from '../../../components/enums'
+import { SpaceChildrenY } from '../../../components/space'
 import { GetLocations } from './types'
 import { UserLocation } from './user-location'
 import { MapBox } from './mapbox'
@@ -36,9 +37,11 @@ const Locations = ({ getLocations, locations, coordinates, searchRadius }: Locat
       <Container>
         <Box size={Sizes.LARGE}>
           <Heading as={Headings.H1} level={Levels.LEVEL_2}>Locations</Heading>
-          <UserLocation />
-          <Search />
-          <LocationsList />
+          <SpaceChildrenY size={Sizes.LARGE}>
+            <UserLocation />
+            <Search />
+            <LocationsList />
+          </SpaceChildrenY>
         </Box>
       </Container>
     </AppLayout>

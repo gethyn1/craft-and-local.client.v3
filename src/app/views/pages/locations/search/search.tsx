@@ -9,7 +9,6 @@ const { useRef, useEffect } = React
 
 const SearchWrapper = styled.div`
   position: relative;
-  margin-bottom: ${props => props.theme.space.medium}px;
 `
 
 const useRefBlur = ({ ref, onBlur }) => {

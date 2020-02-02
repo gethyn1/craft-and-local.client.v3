@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Location, CrudMeta } from '../../../../types'
 import { Grid } from '../../../../components/grid'
 import { VisuallyHidden } from '../../../../components/visually-hidden'
+import { Sizes } from '../../../../components/enums'
+import { SpaceY } from '../../../../components/space'
 import { LocationCard } from './location-card'
 import { LoadMore } from './load-more'
 import { LocationsSkeleton } from './locations-skeleton'
@@ -14,10 +16,12 @@ type LocationsListProps = {
 
 const LocationsListGrid = ({ locations, isLoading }: { locations: Location[], isLoading: boolean }) => (
   <React.Fragment>
-    <Grid>
-      {locations.map(location => <LocationCard key={location.id} location={location} />)}
-      {isLoading && <LocationsSkeleton size={4} />}
-    </Grid>
+    <SpaceY size={Sizes.LARGE}>
+      <Grid>
+        {locations.map(location => <LocationCard key={location.id} location={location} />)}
+        {isLoading && <LocationsSkeleton size={4} />}
+      </Grid>
+    </SpaceY>
     {isLoading && <VisuallyHidden>{LOADING_LOCATIONS}</VisuallyHidden>}
   </React.Fragment>
 )
@@ -28,11 +32,11 @@ const LocationsList = ({ locations, meta }: LocationsListProps) => {
   const { isLoading, hasErrored } = meta.read
 
   return (
-    <React.Fragment>
+    <div>
       {hasLocations ? <LocationsListGrid locations={locations} isLoading={isLoading} /> : null}
       {hasErrored && <p>{ERROR_LOADING_LOCATIONS}</p>}
       {hasLocations ? <LoadMore /> : null}
-    </React.Fragment>
+    </div>
   )
 }
 
