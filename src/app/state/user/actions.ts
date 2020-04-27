@@ -1,4 +1,6 @@
 import { head, prop, compose } from 'ramda'
+// const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
+// const geocodingService = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN })
 import { createCallApiAction } from '../api-action-factory'
 import * as types from './types'
 import { LatLng } from '../../types'
@@ -12,6 +14,20 @@ const fetchAdressLookupOptions = (coordinates: LatLng) => createCallApiAction({
   types: types.READ_USER_ADDRESS,
   adapter
 })
+
+// const fetchAdressLookupOptions = (coordinates: LatLng) => (dispatch: Function) =>  {
+//   geocodingService.reverseGeocode({
+//     query: [coordinates.longitude, coordinates.latitude],
+//     countries: ['GB'],
+//     types: ['address', 'neighborhood', 'place', 'locality']
+//   })
+//   .send()
+//   .then(response => {
+//     console.log('RESPONSE - - - - - - - >', response)
+//   }, error => {
+//     console.log('ERROR - - - - - - - >', error)
+//   })
+// }
 
 export const getUserCoordinates = () => (dispatch: Function) => {
   dispatch({ type: types.GET_USER_COORDINATES_REQUESTED })
